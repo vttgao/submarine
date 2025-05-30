@@ -1,43 +1,79 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import ThreeScene from '../components/ThreeScene';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>come again</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className={styles.title}>come again</h1>
-        <p className={styles.description}>
-          {/* your subtitle or description here */}
-        </p>
+      <header>
+        <Link href="/">
+          home
+        </Link>
+        <Link href="/portfolio">
+          portfolio
+        </Link>
+        <Link href="/about">
+          about
+        </Link>
+        <Link href="/contact">
+          contact
+        </Link>
+      </header>
 
-        {/* Shadow circle below the title/description */}
-        <div className={styles.shadowCircle}></div>
+      <div className={styles.container}>
+        <main>
+          <h1 className={styles.title}>come again</h1>
+          <p className={styles.description}>
+            {/**/}
+          </p>
 
-        {/* 3D scene */}
-        <div style={{ width: '100%', height: '500px', marginTop: '2rem' }}>
-          <ThreeScene />
-        </div>
-      </main>
+          <div style={{ width: '100%', height: '90px', marginTop: '1rem' }}>
+            <ThreeScene />
+          </div>
+        </main>
 
-      <footer>
-        <p>2025的vera</p>
-      </footer>
+        <footer>
+          <p>2025的vera</p>
+        </footer>
+      </div>
 
       <style jsx>{`
+        header {
+          width: 100%;
+          height: 50px;
+          background: rgb(209, 204, 204);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0 1rem;
+        }
+
+        header :global(a) {
+          color: black;
+          text-decoration: none;
+          padding: 0 15px;
+        }
+
+        header :global(a):hover {
+          text-decoration: underline;
+        }
+
         main {
-          padding: 5rem 0;
-          flex: 1;
+          padding: 1rem 0;
+          flex: 0.7;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
+          padding-top: 100px;
         }
+
         footer {
           width: 100%;
           height: 100px;
@@ -46,6 +82,7 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
+
         code {
           background: #fafafa;
           border-radius: 5px;
@@ -53,18 +90,6 @@ export default function Home() {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-        /* Shadow circle styles */
-        .shadowCircle {
-          width: 100px;
-          height: 30px;
-          background: rgba(0, 0, 0, 0.2);
-          border-radius: 50%;
-          margin: 1.5rem auto 0 auto; /* smaller margin-top */
-          filter: blur(8px);
-          position: relative;
-          top: 20;
-          z-index: 0;
         }
       `}</style>
 
@@ -81,6 +106,6 @@ export default function Home() {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
+    </>
   );
 }
