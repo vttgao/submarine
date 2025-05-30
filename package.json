@@ -6,9 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/three": "^0.176.0",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "three": "^0.176.0"
   },
   "engines": {
     "node": ">=18"
