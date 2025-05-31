@@ -22,7 +22,16 @@ export default function ThreeScene() {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    controls.dampingFactor = 0.03;
+
+    // sensitivity
+    controls.rotateSpeed = 0.5;
+    controls.zoomSpeed = 0.8; 
+    controls.panSpeed = 0.7; 
+
+    // lock vertical rotation (polar angle)
+    controls.minPolarAngle = Math.PI / 2;
+    controls.maxPolarAngle = Math.PI / 2;
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
@@ -62,15 +71,17 @@ export default function ThreeScene() {
         model.rotation.y += 0.01;
       }
 
-      controls.update();
+      controls.update(); // damping
       renderer.render(scene, camera);
     };
 
     animate();
 
+    // clean-up function
     return () => {
       controls.dispose();
       renderer.dispose();
+      // mountRef.current exists (?) before building child
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
