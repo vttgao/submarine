@@ -1,3 +1,4 @@
+// pages/index.js (home, pages/.)
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
@@ -12,18 +13,10 @@ export default function Home() {
       </Head>
 
       <header>
-        <Link href="/">
-          home
-        </Link>
-        <Link href="/portfolio">
-          portfolio
-        </Link>
-        <Link href="/about">
-          about
-        </Link>
-        <Link href="/contact">
-          contact
-        </Link>
+        {/* <Link href="/">home</Link>
+        <Link href="/portfolio">portfolio</Link>
+        <Link href="/about">about</Link>
+        <Link href="/contact">contact</Link> */}
       </header>
 
       <div className={styles.container}>
