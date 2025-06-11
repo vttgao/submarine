@@ -13,10 +13,6 @@ export default function Home() {
       </Head>
 
       <header>
-        {/* <Link href="/">home</Link>
-        <Link href="/portfolio">portfolio</Link>
-        <Link href="/about">about</Link>
-        <Link href="/contact">contact</Link> */}
       </header>
 
       <div className={styles.container}>
