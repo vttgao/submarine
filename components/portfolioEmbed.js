@@ -1,8 +1,8 @@
-'use client';
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+"use client";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export default function portfolioEmbed() {
   const mountRef = useRef(null);
@@ -26,8 +26,8 @@ export default function portfolioEmbed() {
 
     // sensitivity
     controls.rotateSpeed = 0.5;
-    controls.zoomSpeed = 0.8; 
-    controls.panSpeed = 0.7; 
+    controls.zoomSpeed = 0.8;
+    controls.panSpeed = 0.7;
 
     // lock vertical rotation (polar angle)
     controls.minPolarAngle = Math.PI / 2;
@@ -44,7 +44,7 @@ export default function portfolioEmbed() {
     let model = null;
 
     loader.load(
-      '/models/submarine.glb',
+      "/models/submarine.glb",
       (gltf) => {
         model = gltf.scene;
         model.scale.set(0.5, 0.5, 0.5);
@@ -53,7 +53,7 @@ export default function portfolioEmbed() {
       },
       undefined,
       (error) => {
-        console.error('Error loading model:', error);
+        console.error("Error loading model:", error);
       }
     );
 
@@ -81,7 +81,7 @@ export default function portfolioEmbed() {
     return () => {
       controls.dispose();
       renderer.dispose();
-      // mountRef.current exists (?) before building child
+      // exists before building child
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }

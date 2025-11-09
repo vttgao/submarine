@@ -1,84 +1,157 @@
-// pages/index.js (home, pages/.)
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from '../styles/Home.module.css';
-import ThreeScene from '../components/ThreeScene';
+// pages/index.js
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import ThreeScene from "../components/ThreeScene";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>come again</title>
+        <title>vttgao</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-      </header>
+      <main className={styles.container}>
+        <div className="page-stack">
+          <div className="uniform-width">
+            <header className="topnav">
+              <nav>
+                <Link href="/">
+                  <span>HOME:</span>
+                </Link>
+                <Link href="/about">
+                  <span>ABOUT</span>
+                </Link>
+                <Link href="/portfolio">
+                  <span>PORTFOLIO</span>
+                </Link>
+                <Link href="/rx100">
+                  <span>RX100</span>
+                </Link>
+              </nav>
+              <div className="nav-bar"></div>
+            </header>
 
-      <div className={styles.container}>
-        <main>
-          <h1 className={styles.title}>come again</h1>
-          <p className={styles.description}>
-            {/**/}
-          </p>
+            <div className="mega-block">
+              <div className="mega-title">
+                <span>V</span>
+                <span>T</span>
+                <span>T</span>
+                <span>G</span>
+                <span>A</span>
+                <span>O</span>
+              </div>
 
-          <div style={{ width: '100%', height: '90px', marginTop: '1rem' }}>
-            <ThreeScene />
+              <div className="mega-bottom-bar"></div>
+            </div>
           </div>
-        </main>
+        </div>
 
-        <footer>
-          <p>2025的vera</p>
-        </footer>
-      </div>
+        <div className="scene-wrapper">
+          <ThreeScene />
+        </div>
+      </main>
 
       <style jsx>{`
-        header {
-          width: 100%;
-          height: 50px;
-          background: rgb(209, 204, 204);
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          padding: 0 1rem;
-        }
-
-        header :global(a) {
-          color: black;
-          text-decoration: none;
-          padding: 0 15px;
-        }
-
-        header :global(a):hover {
-          text-decoration: underline;
-        }
-
-        main {
-          padding: 1rem 0;
-          flex: 0.7;
+        .page-stack {
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
-          padding-top: 100px;
+          width: 100%;
+          padding: 2rem 0;
+          position: relative;
         }
 
-        footer {
+        .uniform-width {
           width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .mega-block {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .topnav {
+          width: 100%;
+          background: white;
+          padding: 1rem 0 0.5rem;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          z-index: 6;
+        }
+
+        nav {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          font-family: Arial, sans-serif;
+          font-weight: 700;
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+
+        /* remove link styling */
+        nav :global(a) {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        /* hover = Carolina blue */
+        nav :global(a:hover) span {
+          color: #79909fff;
+          transition: color 0.2s ease;
+        }
+
+        .nav-bar {
+          width: 100%;
+          height: 10px;
+          background: #222;
+          border-radius: 4px;
+          gap: 2rem;
+        }
+
+        .mega-title {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          font-family: "Times New Roman", serif;
+          font-weight: 300;
+          font-size: clamp(6rem, 17vw, 15rem);
+          color: #222;
+          line-height: 0.8;
+          margin-top: -0.5rem;
+        }
+
+        .mega-title span {
+          flex: 1;
+          text-align: center;
+        }
+
+        .mega-bottom-bar {
+          width: 100%;
+          height: 10px;
+          background: #222;
+          border-radius: 4px;
+        }
+
+        .scene-wrapper {
+          position: relative;
+          width: 100%;
+          height: 300px;
           display: flex;
           justify-content: center;
-          align-items: center;
+          z-index: 8;
         }
 
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        .scene-wrapper :global(canvas) {
+          position: relative;
+          z-index: 8;
+          margin-top: -220px;
+          pointer-events: none;
         }
       `}</style>
 
