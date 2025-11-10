@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>vttgao</title>
+        <title>VTTGAO</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -28,6 +28,9 @@ export default function Home() {
                 </Link>
                 <Link href="/rx100">
                   <span>RX100</span>
+                </Link>
+                <Link href="/proto">
+                  <span>PROTOTYPING</span>
                 </Link>
               </nav>
               <div className="nav-bar"></div>
@@ -94,13 +97,11 @@ export default function Home() {
           margin-bottom: 0.5rem;
         }
 
-        /* remove link styling */
         nav :global(a) {
           color: inherit;
           text-decoration: none;
         }
 
-        /* hover = Carolina blue */
         nav :global(a:hover) span {
           color: #79909fff;
           transition: color 0.2s ease;
