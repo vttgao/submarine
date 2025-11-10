@@ -34,7 +34,7 @@ export default function About() {
         <h1 className="title">PROTO</h1>
 
         <section className="content">
-          <p>i'm currently working on pcbs!</p>
+          <p>[wip]</p>
         </section>
       </main>
 
