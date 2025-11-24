@@ -18,7 +18,7 @@ export default function Home() {
             <header className="topnav">
               <nav>
                 <Link href="/">
-                  <span>HOME:</span>
+                  <span>[ HOME ]</span>
                 </Link>
                 <Link href="/about">
                   <span>ABOUT</span>
@@ -26,9 +26,9 @@ export default function Home() {
                 <Link href="/portfolio">
                   <span>PORTFOLIO</span>
                 </Link>
-                <Link href="/rx100">
+                {/* <Link href="/rx100">
                   <span>RX100</span>
-                </Link>
+                </Link> */}
                 <Link href="/proto">
                   <span>PROTOTYPING</span>
                 </Link>
