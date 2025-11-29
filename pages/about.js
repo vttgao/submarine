@@ -1,9 +1,18 @@
-// pages/about.js
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
+import Clock from "../components/Clock";
 
 export default function About() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("gao820@purdue.edu");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  };
+
   return (
     <>
       <Head>
@@ -11,98 +20,92 @@ export default function About() {
       </Head>
 
       <main className={styles.container}>
-        <div className="page-stack">
-          <div className="uniform-width">
-            <header className="topnav">
-              <nav>
-                <Link href="/">
-                  <span>HOME:</span>
-                </Link>
-                <Link href="/about">
-                  <span>[ ABOUT ]</span>
-                </Link>
-                <Link href="/portfolio">
-                  <span>PORTFOLIO</span>
-                </Link>
-                <Link href="/proto">
-                  <span>PROTOTYPING</span>
-                </Link>
-              </nav>
-              <div className="nav-bar"></div>
-            </header>
+        <div className="content-box">
+          <div className="page-stack">
+            <div className="uniform-width">
+              <header className="topnav">
+                <nav>
+                  <Link href="/">
+                    <span>HOME:</span>
+                  </Link>
+                  <Link href="/about">
+                    <span>[ ABOUT ]</span>
+                  </Link>
+                  <Link href="/portfolio">
+                    <span>PORTFOLIO</span>
+                  </Link>
+                  <Link href="/proto">
+                    <span>PROTOTYPING</span>
+                  </Link>
+                </nav>
+                <div className="nav-bar"></div>
+              </header>
 
-            {/* --- TITLE BLOCK LIKE HOME PAGE --- */}
-            <div className="mega-block">
-              <div className="mega-title">
-                <span>A</span>
-                <span>B</span>
-                <span>O</span>
-                <span>U</span>
-                <span>T</span>
-                <span>!</span>
+              <div className="mega-block">
+                <div className="mega-title">
+                  <span>A</span>
+                  <span>B</span>
+                  <span>O</span>
+                  <span>U</span>
+                  <span>T</span>
+                </div>
+                <div className="mega-bottom-bar"></div>
               </div>
-
-              <div className="mega-bottom-bar"></div>
             </div>
           </div>
+
+          <section className="about-layout">
+            <div className="left-clock">
+              <Clock />
+            </div>
+
+            <div className="right-text">
+              <p>
+                I'M VERA, A SECOND-YEAR CS AND ECE STUDENT AT PURDUE UNIVERSITY.
+                I'M INTERESTED IN PCBS, SEMICONDUCTOR MANUFACTURING, CHIP
+                DESIGN, SOFTWARE ENGINEERING, AND EMBEDDED SYSTEMS ENGINEERING.
+                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
+                SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
+                TCHOTCHKES.
+              </p>
+
+              <p>
+                IF YOU WANT TO SEE MORE, CHECK THE PORTFOLIO PAGE FOR MY WORK,
+                THE RX100 PAGE FOR MY PHOTOGRAPHY, OR THE PROTOTYPING PAGE FOR
+                WHAT I'M CURRENTLY WORKING ON. CONTACT ME AT{" "}
+                <span className="email" onClick={handleCopy}>
+                  {copied
+                    ? "[COPIED TO CLIPBOARD]"
+                    : "GAO820 [AT] PURDUE [DOT] EDU"}
+                </span>
+                .
+              </p>
+            </div>
+          </section>
         </div>
-
-        {/* --- CONTENT --- */}
-        <section className="about-content">
-          <p>
-            i'm vera, a second year cs and ece student at purdue university. i'm
-            interested in pcbs, semiconductor manufacturing, chip design,
-            software engineering and embedded systems engineering.
-          </p>
-
-          <p>
-            i like technical builds that feel a bit whimsical. this site is
-            basically a playground for that — somewhere to put projects, photos,
-            3d models, and other digital tchotchkes.
-          </p>
-
-          <p>
-            if you want to see more, check the portfolio page for my work, the
-            rx100 page for my photography, or the prototyping page for what i'm
-            currently working on. contact me at{" "}
-            <a className="email" href="mailto:gao820@purdue.edu">
-              gao820 [at] purdue [dot] edu
-            </a>
-            .
-          </p>
-        </section>
       </main>
 
       <style jsx>{`
-        /* --- SAME PAGE STRUCTURE AS INDEX PAGE --- */
+        .content-box {
+          width: 90%;
+          background: #ffffff;
+          border: 2px solid #222;
+          padding: 2rem;
+          margin-top: 1rem;
+        }
+
         .page-stack {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          padding: 2rem 0;
-          position: relative;
+          padding: 0;
         }
 
         .uniform-width {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .mega-block {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
         }
 
         .topnav {
           width: 100%;
-          background: white;
+          background: transparent;
           padding: 1rem 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          z-index: 6;
         }
 
         nav {
@@ -129,7 +132,11 @@ export default function About() {
           width: 100%;
           height: 10px;
           background: #222;
-          border-radius: 4px;
+        }
+
+        .mega-block {
+          display: flex;
+          flex-direction: column;
         }
 
         .mega-title {
@@ -138,10 +145,10 @@ export default function About() {
           justify-content: space-between;
           font-family: "Times New Roman", serif;
           font-weight: 300;
-          font-size: clamp(6rem, 17vw, 15rem);
+          font-size: clamp(6rem, 17vw, 8rem);
           color: #222;
           line-height: 0.8;
-          margin-top: -0.5rem;
+          margin-top: -0.3rem;
         }
 
         .mega-title span {
@@ -153,33 +160,73 @@ export default function About() {
           width: 100%;
           height: 10px;
           background: #222;
-          border-radius: 4px;
         }
 
-        /* --- ABOUT CONTENT --- */
-        .about-content {
-          max-width: 800px;
-          margin: 3rem auto 5rem;
-          padding: 0 1rem;
-          font-size: 1.1rem;
-          line-height: 1.55;
+        .about-layout {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 2rem;
+          width: 100%;
+          padding: 1.5rem 0;
+          margin-top: 1rem;
+          align-items: stretch;
+        }
+
+        .left-clock {
+          display: flex;
+          align-items: flex-start; /* ★ align clock to top */
+          justify-content: flex-start;
+          height: 100%;
+        }
+
+        .left-clock :global(.clock) {
+          font-family: "Times New Roman", serif;
+          font-size: 10vw;
+          font-weight: 300;
+          line-height: 1;
           color: #222;
+          height: 100%;
+          display: flex;
+          // align-items: center;
+          justify-content: center;
+        }
+
+        .right-text {
+          font-family: Arial, sans-serif;
+          font-size: 0.9rem;
+          line-height: 1.65;
+          font-weight: 600;
+          color: #222;
+
+          background: repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent calc(1.65em - 1px),
+            #ddd calc(1.65em - 1px),
+            #ddd 1.65em
+          );
+
+          padding-bottom: 1rem;
+        }
+
+        .right-text p {
+          margin: 0 0 1.65em 0;
         }
 
         .email {
-          color: inherit;
+          color: #79909fff;
           text-decoration: none;
-          border-bottom: 1px solid transparent;
-          transition: border-color 0.2s ease, color 0.2s ease;
+          cursor: pointer;
         }
 
         .email:hover {
-          border-color: #79909fff;
           color: #79909fff;
         }
+      `}</style>
 
-        p {
-          margin-bottom: 1.3rem;
+      <style jsx global>{`
+        body {
+          background: #f2efe9;
         }
       `}</style>
     </>

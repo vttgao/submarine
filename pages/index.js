@@ -79,7 +79,6 @@ export default function Home() {
 
         .topnav {
           width: 100%;
-          background: white;
           padding: 1rem 0 0.5rem;
           display: flex;
           flex-direction: column;
@@ -167,6 +166,12 @@ export default function Home() {
         }
         * {
           box-sizing: border-box;
+        }
+      `}</style>
+
+      <style jsx global>{`
+        body {
+          background: #f2efe9; /* <--- your about-page background */
         }
       `}</style>
     </>
