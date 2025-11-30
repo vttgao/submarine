@@ -171,7 +171,7 @@ export default function Home() {
 
       <style jsx global>{`
         body {
-          background: #f2efe9; /* <--- your about-page background */
+          background: #f2efe9;
         }
       `}</style>
     </>

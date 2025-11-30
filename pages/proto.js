@@ -80,7 +80,6 @@ export default function About() {
           border-radius: 4px;
         }
 
-        /* match portfolio heading layout */
         .title {
           width: 100%;
           max-width: 1200px;

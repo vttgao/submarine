@@ -64,11 +64,12 @@ export default function About() {
                 I'M VERA, A SECOND-YEAR CS AND ECE STUDENT AT PURDUE UNIVERSITY.
                 I'M INTERESTED IN PCBS, SEMICONDUCTOR MANUFACTURING, CHIP
                 DESIGN, SOFTWARE ENGINEERING, AND EMBEDDED SYSTEMS ENGINEERING.
+              </p>
+              <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES.
               </p>
-
               <p>
                 IF YOU WANT TO SEE MORE, CHECK THE PORTFOLIO PAGE FOR MY WORK,
                 THE RX100 PAGE FOR MY PHOTOGRAPHY, OR THE PROTOTYPING PAGE FOR
@@ -76,9 +77,8 @@ export default function About() {
                 <span className="email" onClick={handleCopy}>
                   {copied
                     ? "[COPIED TO CLIPBOARD]"
-                    : "GAO820 [AT] PURDUE [DOT] EDU"}
+                    : "GAO820 [AT] PURDUE [DOT] EDU."}
                 </span>
-                .
               </p>
             </div>
           </section>
@@ -152,7 +152,7 @@ export default function About() {
         }
 
         .mega-title span {
-          flex: 1;
+          // flex: 1;
           text-align: center;
         }
 
@@ -174,13 +174,13 @@ export default function About() {
 
         .left-clock {
           display: flex;
-          align-items: flex-start; /* ★ align clock to top */
+          align-items: flex-start;
           justify-content: flex-start;
           height: 100%;
         }
 
         .left-clock :global(.clock) {
-          font-family: "Times New Roman", serif;
+          font-family: "Arial", serif;
           font-size: 10vw;
           font-weight: 300;
           line-height: 1;
