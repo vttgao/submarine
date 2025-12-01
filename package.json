@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.2",
     "@types/three": "^0.176.0",
     "next": "latest",
     "react": "latest",
