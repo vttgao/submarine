@@ -21,9 +21,9 @@ export default function About() {
             <Link href="/portfolio">
               <span>PORTFOLIO</span>
             </Link>
-            <Link href="/rx100">
+            {/* <Link href="/rx100">
               <span>RX100</span>
-            </Link>
+            </Link> */}
             <Link href="/proto">
               <span>PROTOTYPING</span>
             </Link>

@@ -35,9 +35,9 @@ export default function About() {
                   <Link href="/portfolio">
                     <span>PORTFOLIO</span>
                   </Link>
-                  <Link href="/proto">
+                  {/* <Link href="/proto">
                     <span>PROTOTYPING</span>
-                  </Link>
+                  </Link> */}
                 </nav>
                 <div className="nav-bar"></div>
               </header>
@@ -66,11 +66,18 @@ export default function About() {
                 I'M INTERESTED IN PCBS, SEMICONDUCTOR MANUFACTURING, CHIP
                 DESIGN, SOFTWARE ENGINEERING, AND EMBEDDED SYSTEMS ENGINEERING.
               </p>
-              <p>
+              {/* <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK, OR THE
                 PROTOTYPING PAGE FOR WHAT I'M CURRENTLY WORKING ON. TRY CLICKING
+                THE DICE!
+              </p> */}
+
+              <p>
+                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
+                SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
+                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK. TRY CLICKING
                 THE DICE!
               </p>
 

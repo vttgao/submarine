@@ -7,6 +7,7 @@ export default function Portfolio() {
   const scrollRef = useRef(null);
   const [idle, setIdle] = useState(false);
 
+  // idle detection for arrow animation
   useEffect(() => {
     let timer;
     const reset = () => {
@@ -47,65 +48,94 @@ export default function Portfolio() {
   return (
     <>
       <Head>
-        <title>VTTGAO | FOLIO</title>
+        <title>VTTGAO | PORTFOLIO</title>
       </Head>
 
-      <main className="portfolio-container">
-        <header className="topnav">
-          <nav>
-            <Link href="/">
-              <span>HOME:</span>
-            </Link>
-            <Link href="/about">
-              <span>ABOUT</span>
-            </Link>
-            <Link href="/portfolio">
-              <span>PORTFOLIO</span>
-            </Link>
-            <Link href="/rx100">
-              <span>RX100</span>
-            </Link>
-            <Link href="/proto">
-              <span>PROTOTYPING</span>
-            </Link>
-          </nav>
-          <div className="nav-bar"></div>
-        </header>
+      <main className="container">
+        <div className="content-box">
+          <div className="page-stack">
+            <div className="uniform-width">
+              <header className="topnav">
+                <nav>
+                  <Link href="/">
+                    <span>HOME:</span>
+                  </Link>
+                  <Link href="/about">
+                    <span>ABOUT</span>
+                  </Link>
+                  <Link href="/portfolio">
+                    <span>[ PORTFOLIO ]</span>
+                  </Link>
+                  {/* <Link href="/proto">
+                    <span>PROTOTYPING</span>
+                  </Link> */}
+                </nav>
+                <div className="nav-bar"></div>
+              </header>
 
-        <div className="title-row">
-          <h1 className="title">PORTFOLIO</h1>
-          <div className="big-pin">做</div>
-        </div>
-
-        <div className="gallery-wrap">
-          <div className="gallery" ref={scrollRef}>
-            {images.map((item, i) => (
-              <div className="card" key={i}>
-                <img src={item.src} alt="" />
-                <div className="caption">{item.caption}</div>
+              <div className="mega-block">
+                <div className="mega-title">
+                  <span>P</span>
+                  <span>O</span>
+                  <span>R</span>
+                  <span>T</span>
+                  <span>F</span>
+                  <span>O</span>
+                  <span>L</span>
+                  <span>I</span>
+                  <span>O</span>
+                </div>
+                <div className="mega-bottom-bar"></div>
               </div>
-            ))}
+            </div>
           </div>
 
-          <div className={`scroll-arrows ${idle ? "idle" : ""}`}>
-            <span>&gt;&gt;</span>
-          </div>
+          <section className="folio-layout">
+            <div className="gallery-wrap">
+              <div className="gallery" ref={scrollRef}>
+                {images.map((item, i) => (
+                  <div className="card" key={i}>
+                    <img src={item.src} alt="" />
+                    <div className="caption">{item.caption}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className={`scroll-arrows ${idle ? "idle" : ""}`}>
+                <span>&gt;&gt;</span>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 
       <style jsx>{`
-        .portfolio-container {
+        .container {
           width: 100%;
-          padding: 2rem 0;
           display: flex;
           flex-direction: column;
           align-items: center;
-          position: relative;
+          padding: 2rem 0;
+        }
+
+        .content-box {
+          width: 90%;
+          background: #ffffff;
+          border: 2px solid #222;
+          padding: 2rem;
+          margin-top: 1rem;
+        }
+
+        .page-stack {
+          padding: 0;
+        }
+        .uniform-width {
+          width: 100%;
         }
 
         .topnav {
           width: 100%;
-          background: white;
+          background: transparent;
           padding: 1rem 0 0.5rem;
         }
 
@@ -133,53 +163,49 @@ export default function Portfolio() {
           width: 100%;
           height: 10px;
           background: #222;
-          border-radius: 4px;
         }
 
-        .title-row {
+        .mega-block {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .mega-title {
           width: 100%;
-          max-width: 1200px;
-          padding-left: 1rem;
-          margin: 2rem 0 1rem;
           display: flex;
           justify-content: space-between;
-          align-items: flex-start;
-          position: relative;
-        }
-
-        .title {
           font-family: "Times New Roman", serif;
-          font-size: 4rem;
-          z-index: 3;
-        }
-
-        .big-pin {
-          position: absolute;
-          top: 0;
-          right: 0;
-          font-family: "Times New Roman", serif;
-          font-size: clamp(10rem, 30vw, 20rem);
+          font-weight: 300;
+          font-size: clamp(6rem, 17vw, 8rem);
           color: #222;
-          opacity: 0.08;
-          line-height: 1;
-          padding-right: 1rem;
-          z-index: 0;
-          pointer-events: none;
+          line-height: 0.8;
+          margin-top: -0.3rem;
+        }
+
+        .mega-title span {
+          text-align: center;
+        }
+
+        .mega-bottom-bar {
+          width: 100%;
+          height: 10px;
+          background: #222;
+        }
+
+        .folio-layout {
+          width: 100%;
+          margin-top: 2rem;
         }
 
         .gallery-wrap {
           width: 100%;
-          max-width: 1200px;
-          padding-left: 1rem;
           overflow: hidden;
           position: relative;
-          z-index: 2;
         }
 
         .gallery {
           display: flex;
           overflow-x: auto;
-          overflow-y: hidden;
           scroll-snap-type: x mandatory;
           gap: 1.5rem;
           padding: 1.5rem 0;
@@ -190,23 +216,12 @@ export default function Portfolio() {
         }
 
         .card {
-          flex: 0 0 calc((1200px - (1.5rem * 2)) / 3);
-          max-width: calc((1200px - (1.5rem * 2)) / 3);
-          height: 320px;
+          flex: 0 0 calc((100% - (1.5rem * 2)) / 3);
+          height: 300px;
           scroll-snap-align: start;
           background: #000;
-          overflow: hidden;
           position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-        }
-
-        @media (max-width: 1300px) {
-          .card {
-            flex: 0 0 calc((100vw - 1rem - (1.5rem * 2)) / 3);
-            max-width: calc((100vw - 1rem - (1.5rem * 2)) / 3);
-          }
+          overflow: hidden;
         }
 
         .card img {
@@ -225,28 +240,22 @@ export default function Portfolio() {
           background: rgba(0, 0, 0, 0.45);
           color: white;
           backdrop-filter: blur(4px);
-          position: relative;
-          z-index: 2;
+          position: absolute;
+          bottom: 0;
+          left: 0;
         }
 
         .scroll-arrows {
           width: 100%;
-          max-width: 1200px;
           font-size: 3rem;
           font-weight: 800;
-          opacity: 0.12;
+          opacity: 1;
           display: flex;
           justify-content: space-between;
-          margin-top: -0.2rem;
           user-select: none;
           pointer-events: none;
-          letter-spacing: -0.05em;
           color: black;
-        }
-
-        .scroll-arrows span {
-          font-family: "Times New Roman", serif;
-          line-height: 1;
+          margin-top: -0.2rem;
         }
 
         @keyframes ebb {
@@ -265,11 +274,13 @@ export default function Portfolio() {
         }
 
         .scroll-arrows.idle span {
-          animation: ebb 1.3s cubic-bezier(0.45, 0, 0.2, 1) infinite;
-        }
-
-        .scroll-arrows.idle span {
           animation: ebb 1.8s ease-in-out infinite;
+        }
+      `}</style>
+
+      <style jsx global>{`
+        body {
+          background: #f2efe9;
         }
       `}</style>
     </>

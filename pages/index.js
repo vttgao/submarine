@@ -26,9 +26,9 @@ export default function Home() {
                 <Link href="/portfolio">
                   <span>PORTFOLIO</span>
                 </Link>
-                <Link href="/proto">
+                {/* <Link href="/proto">
                   <span>PROTOTYPING</span>
-                </Link>
+                </Link> */}
               </nav>
               <div className="nav-bar"></div>
             </header>
