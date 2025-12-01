@@ -75,7 +75,7 @@ export default function About() {
               </p> */}
 
               <p>
-                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
+                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK. TRY CLICKING
                 THE DICE!
@@ -173,7 +173,7 @@ export default function About() {
 
         .about-layout {
           display: grid;
-          grid-template-columns: 1fr 2fr;
+          grid-template-columns: 1fr 1fr;
           gap: 2rem;
           width: 100%;
           padding: 1.5rem 0;
@@ -200,26 +200,48 @@ export default function About() {
           justify-content: center;
         }
 
+        // .right-text {
+        //   font-family: Arial, sans-serif;
+        //   font-size: 0.9rem;
+        //   line-height: 1.65;
+        //   font-weight: 600;
+        //   color: #222;
+
+        //   background: repeating-linear-gradient(
+        //     to bottom,
+        //     transparent 0,
+        //     transparent calc(1.65em - 1px),
+        //     #ddd calc(1.65em - 1px),
+        //     #ddd 1.65em
+        //   );
+
+        //   padding-bottom: 1rem;
+        // }
+
+        // .right-text p {
+        //   margin: 0 0 1.65em 0;
+        // }
+
         .right-text {
           font-family: Arial, sans-serif;
           font-size: 0.9rem;
-          line-height: 1.65;
+          line-height: 24px;
           font-weight: 600;
           color: #222;
 
           background: repeating-linear-gradient(
             to bottom,
             transparent 0,
-            transparent calc(1.65em - 1px),
-            #ddd calc(1.65em - 1px),
-            #ddd 1.65em
+            transparent 23px,
+            #ddd 23px,
+            #ddd 24px
           );
 
           padding-bottom: 1rem;
         }
 
         .right-text p {
-          margin: 0 0 1.65em 0;
+          margin: 0 0 24px 0;
         }
 
         .email {
