@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import Clock from "../components/Clock";
+import DiceOverlay from "../components/DiceOverlay";
 
 export default function About() {
   const [copied, setCopied] = useState(false);
@@ -18,7 +19,7 @@ export default function About() {
       <Head>
         <title>VTTGAO | ABOUT</title>
       </Head>
-
+      <DiceOverlay />
       <main className={styles.container}>
         <div className="content-box">
           <div className="page-stack">
@@ -68,12 +69,13 @@ export default function About() {
               <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
-                TCHOTCHKES.
+                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK, OR THE
+                PROTOTYPING PAGE FOR WHAT I'M CURRENTLY WORKING ON. TRY CLICKING
+                THE DICE!
               </p>
+
               <p>
-                IF YOU WANT TO SEE MORE, CHECK THE PORTFOLIO PAGE FOR MY WORK,
-                THE RX100 PAGE FOR MY PHOTOGRAPHY, OR THE PROTOTYPING PAGE FOR
-                WHAT I'M CURRENTLY WORKING ON. CONTACT ME AT{" "}
+                CONTACT ME AT{" "}
                 <span className="email" onClick={handleCopy}>
                   {copied
                     ? "[COPIED TO CLIPBOARD]"

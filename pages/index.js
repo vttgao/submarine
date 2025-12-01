@@ -26,9 +26,6 @@ export default function Home() {
                 <Link href="/portfolio">
                   <span>PORTFOLIO</span>
                 </Link>
-                {/* <Link href="/rx100">
-                  <span>RX100</span>
-                </Link> */}
                 <Link href="/proto">
                   <span>PROTOTYPING</span>
                 </Link>
@@ -47,6 +44,8 @@ export default function Home() {
               </div>
 
               <div className="mega-bottom-bar"></div>
+
+              {/* <div className="mega-subtitle">( ⏺ ⏺ ⏺ )</div> */}
             </div>
           </div>
         </div>
@@ -111,7 +110,6 @@ export default function Home() {
           height: 10px;
           background: #222;
           border-radius: 4px;
-          gap: 2rem;
         }
 
         .mega-title {
@@ -136,7 +134,19 @@ export default function Home() {
           height: 10px;
           background: #222;
           border-radius: 4px;
+          margin-bottom: 0.4rem;
         }
+
+        // .mega-subtitle {
+        //   font-family: "Times New Roman", serif;
+        //   // font-style: italic;
+        //   font-size: 1.3rem;
+        //   font-weight: 300;
+        //   opacity: 0.75;
+        //   text-align: left;
+        //   margin-top: 0.2rem;
+        //   color: #222;
+        // }
 
         .scene-wrapper {
           position: relative;

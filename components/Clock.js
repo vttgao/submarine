@@ -48,7 +48,7 @@ export default function Clock() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          min-width: 9ch;
+          width: 100%;
         }
 
         .clock-label {
