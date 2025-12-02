@@ -243,6 +243,8 @@ export default function Portfolio() {
           width: 100%;
           padding: 0.8rem 1rem;
           font-size: 0.95rem;
+          font-family: Arial, sans-serif;
+          font-weight: 700;
           background: rgba(0, 0, 0, 0.45);
           color: white;
           backdrop-filter: blur(4px);
