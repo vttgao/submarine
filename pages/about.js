@@ -78,7 +78,7 @@ export default function About() {
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK.
               </p>
-              TRY CLICKING THE DICE!
+              TRY ROLLING THE DIE!
               <p>
                 CONTACT ME AT{" "}
                 <span className="email" onClick={handleCopy}>
