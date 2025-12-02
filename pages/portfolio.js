@@ -108,7 +108,7 @@ export default function Portfolio() {
               </div>
 
               <div className={`scroll-arrows ${idle ? "idle" : ""}`}>
-                <span>&gt;&gt; SCROLL TO NAVIGATE</span>
+                <span>&lt; &gt;</span>
               </div>
             </div>
           </section>
