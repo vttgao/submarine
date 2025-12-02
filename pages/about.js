@@ -75,7 +75,7 @@ export default function About() {
               </p> */}
 
               <p>
-                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS IS
+                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK. TRY CLICKING
                 THE DICE!

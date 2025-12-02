@@ -38,11 +38,17 @@ export default function Portfolio() {
   }, []);
 
   const images = [
-    { src: "/images/p1.jpg", caption: "00" },
-    { src: "/images/p2.jpg", caption: "01" },
-    { src: "/images/p3.jpg", caption: "02" },
-    { src: "/images/p4.jpg", caption: "03" },
-    { src: "/images/p5.jpg", caption: "04" },
+    {
+      src: "/images/p1.png",
+      caption: "[00] PART 25/26 PDB (DEV BOARD)",
+    },
+    { src: "/images/p2.png", caption: "[01] PART 25/26 PDB SCHEMATIC" },
+    { src: "/images/p3.jpg", caption: "[02] STM32 BASIC SETUP" },
+    { src: "/images/p4.jpg", caption: "[03] 555 TIMER BUILD (F1 LIGHTS)" },
+    { src: "/images/p5.jpg", caption: "[04] 24V BUCK BOOST" },
+    { src: "/images/p6.jpg", caption: "[05] MECHANICAL CLAW BUILD" },
+    { src: "/images/p7.jpg", caption: "[06] SCIENCE OLYMPIAD BUILDS" },
+    { src: "/images/p8.png", caption: "[07] NEW SCENE GAMEJAM PROJECT" },
   ];
 
   return (
@@ -102,7 +108,7 @@ export default function Portfolio() {
               </div>
 
               <div className={`scroll-arrows ${idle ? "idle" : ""}`}>
-                <span>&gt;&gt;</span>
+                <span>&gt;&gt; SCROLL TO NAVIGATE</span>
               </div>
             </div>
           </section>
@@ -247,7 +253,7 @@ export default function Portfolio() {
 
         .scroll-arrows {
           width: 100%;
-          font-size: 3rem;
+          font-size: 2rem;
           font-weight: 800;
           opacity: 1;
           display: flex;
