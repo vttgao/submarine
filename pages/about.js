@@ -73,21 +73,29 @@ export default function About() {
                 PROTOTYPING PAGE FOR WHAT I'M CURRENTLY WORKING ON. TRY CLICKING
                 THE DICE!
               </p> */}
-
               <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
-                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK. TRY CLICKING
-                THE DICE!
+                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK.
               </p>
-
+              TRY CLICKING THE DICE!
               <p>
                 CONTACT ME AT{" "}
                 <span className="email" onClick={handleCopy}>
                   {copied
                     ? "[COPIED TO CLIPBOARD]"
-                    : "GAO820 [AT] PURDUE [DOT] EDU."}
+                    : "GAO820 [AT] PURDUE [DOT] EDU"}
                 </span>
+                <br />
+                OR UNDER VTTGAO.{" "}
+                <a
+                  href="https://www.linkedin.com/in/vttgao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="email"
+                >
+                  LINKEDIN.COM/IN/VTTGAO
+                </a>
               </p>
             </div>
           </section>
