@@ -186,8 +186,14 @@ export default function Portfolio() {
             gap: 0.4rem;
             line-height: 1;
           }
+
           .mega-title span {
             display: inline-block;
+          }
+
+          /* Hide P O R T → show only F O L I O */
+          .mega-title span:nth-child(-n + 4) {
+            display: none;
           }
         }
 
@@ -202,7 +208,7 @@ export default function Portfolio() {
         .content-box {
           width: 90%;
           background: #ffffff;
-          border: 2px solid #222;
+          // border: 2px solid #222;
           padding: 2rem;
           margin-top: 1rem;
         }
@@ -374,7 +380,7 @@ export default function Portfolio() {
         .modal-content {
           background: white;
           padding: 1.5rem;
-          border: 3px solid #222;
+          // border: 3px solid #222;
           max-width: 800px;
           width: 90%;
           max-height: 90vh;
