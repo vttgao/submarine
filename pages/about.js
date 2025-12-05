@@ -19,7 +19,9 @@ export default function About() {
       <Head>
         <title>VTTGAO | ABOUT</title>
       </Head>
+
       <DiceOverlay />
+
       <main className={styles.container}>
         <div className="content-box">
           <div className="page-stack">
@@ -35,9 +37,6 @@ export default function About() {
                   <Link href="/portfolio">
                     <span>PORTFOLIO</span>
                   </Link>
-                  {/* <Link href="/proto">
-                    <span>PROTOTYPING</span>
-                  </Link> */}
                 </nav>
                 <div className="nav-bar"></div>
               </header>
@@ -66,19 +65,15 @@ export default function About() {
                 I'M INTERESTED IN PCBS, SEMICONDUCTOR MANUFACTURING, CHIP
                 DESIGN, SOFTWARE ENGINEERING, AND EMBEDDED SYSTEMS ENGINEERING.
               </p>
-              {/* <p>
-                I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
-                SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
-                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK, OR THE
-                PROTOTYPING PAGE FOR WHAT I'M CURRENTLY WORKING ON. TRY CLICKING
-                THE DICE!
-              </p> */}
+
               <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
                 SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
                 TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK.
               </p>
-              TRY ROLLING THE DIE!
+
+              <p>TRY ROLLING THE DIE!</p>
+
               <p>
                 CONTACT ME AT{" "}
                 <span className="email" onClick={handleCopy}>
@@ -113,10 +108,6 @@ export default function About() {
 
         .page-stack {
           padding: 0;
-        }
-
-        .uniform-width {
-          width: 100%;
         }
 
         .topnav {
@@ -169,7 +160,6 @@ export default function About() {
         }
 
         .mega-title span {
-          // flex: 1;
           text-align: center;
         }
 
@@ -193,7 +183,6 @@ export default function About() {
           display: flex;
           align-items: flex-start;
           justify-content: flex-start;
-          height: 100%;
         }
 
         .left-clock :global(.clock) {
@@ -202,33 +191,9 @@ export default function About() {
           font-weight: 300;
           line-height: 1;
           color: #222;
-          height: 100%;
           display: flex;
-          // align-items: center;
           justify-content: center;
         }
-
-        // .right-text {
-        //   font-family: Arial, sans-serif;
-        //   font-size: 0.9rem;
-        //   line-height: 1.65;
-        //   font-weight: 600;
-        //   color: #222;
-
-        //   background: repeating-linear-gradient(
-        //     to bottom,
-        //     transparent 0,
-        //     transparent calc(1.65em - 1px),
-        //     #ddd calc(1.65em - 1px),
-        //     #ddd 1.65em
-        //   );
-
-        //   padding-bottom: 1rem;
-        // }
-
-        // .right-text p {
-        //   margin: 0 0 1.65em 0;
-        // }
 
         .right-text {
           font-family: Arial, sans-serif;
@@ -236,7 +201,7 @@ export default function About() {
           line-height: 24px;
           font-weight: 600;
           color: #222;
-
+          overflow-wrap: break-word;
           background: repeating-linear-gradient(
             to bottom,
             transparent 0,
@@ -244,7 +209,6 @@ export default function About() {
             #ddd 23px,
             #ddd 24px
           );
-
           padding-bottom: 1rem;
         }
 
@@ -260,6 +224,35 @@ export default function About() {
 
         .email:hover {
           color: #79909fff;
+        }
+
+        /* -------------------- MOBILE FIXES -------------------- */
+        @media (max-width: 768px) {
+          .about-layout {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+
+          .left-clock {
+            justify-content: center;
+          }
+
+          .left-clock :global(.clock) {
+            font-size: 18vw;
+            text-align: center;
+          }
+
+          .right-text {
+            max-width: 100%;
+            width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
+          }
+
+          .content-box {
+            width: 95%;
+            padding: 1.2rem;
+          }
         }
       `}</style>
 

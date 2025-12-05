@@ -38,17 +38,15 @@ export default function Portfolio() {
   }, []);
 
   const images = [
-    {
-      src: "/images/p1.png",
-      caption: "[00] PART 25/26 PDB (DEV BOARD)",
-    },
-    { src: "/images/p2.png", caption: "[01] PART 25/26 PDB SCHEMATIC" },
-    { src: "/images/p3.jpg", caption: "[02] STM32 BASIC SETUP" },
-    { src: "/images/p4.jpg", caption: "[03] 555 TIMER BUILD (F1 LIGHTS)" },
-    { src: "/images/p5.jpg", caption: "[04] 24V BUCK BOOST" },
-    { src: "/images/p6.jpg", caption: "[05] MECHANICAL CLAW BUILD" },
-    { src: "/images/p7.jpg", caption: "[06] SCIENCE OLYMPIAD BUILDS" },
-    { src: "/images/p8.png", caption: "[07] NEW SCENE GAMEJAM PROJECT" },
+    { src: "/images/pdb_board.png", caption: "PART 25/26 PDB (DEV BOARD)" },
+    { src: "/images/pdb_schema.png", caption: "PART 25/26 PDB SCHEMATIC" },
+    { src: "/images/stm32.jpg", caption: "STM32 BASIC SETUP" },
+    { src: "/images/555timer.jpg", caption: "555 TIMER BUILD (F1 LIGHTS)" },
+    { src: "/images/buckboost.jpg", caption: "24V BUCK BOOST" },
+    { src: "/images/audioeq.png", caption: "AUDIO EQUALIZER" },
+    { src: "/images/clawmachine.png", caption: "CLAW MACHINE 3D MODEL" },
+    { src: "/images/trebuchet.png", caption: "TREBUCHET 3D MODEL" },
+    { src: "/images/catapult.jpg", caption: "OPERATION CATAPULT PROJECT" },
   ];
 
   return (
