@@ -72,9 +72,15 @@ export default function Portfolio() {
     },
     {
       src: "/images/audioeq.png",
-      caption: "AUDIO EQUALIZER",
+      caption: "AUDIO EQUALIZER SCHEMATIC",
       context:
-        "Digital + analog experimental equalizer with band-pass filter stacking and frequency shaping. Filters trebles, mids, and bass.",
+        "Analog audio equalizer schematic using cascaded RC and op-amp filter stages to separate bass, mid, and treble frequency bands. Designed to explore frequency shaping, gain control, and filter behavior.",
+    },
+    {
+      src: "/images/equalizer.png",
+      caption: "AUDIO EQUALIZER BUILD",
+      context:
+        "Physical breadboard implementation of the audio equalizer schematic, featuring discrete RC filters and op-amp stages for bass, mid, and treble bands. Built and tested to validate filter responses and real-world circuit behavior.",
     },
     {
       src: "/images/clawmachine.png",
