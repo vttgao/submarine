@@ -1,10 +1,24 @@
 // pages/index.js
 import Head from "next/head";
 import Link from "next/link";
+import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import ThreeScene from "../components/ThreeScene";
 
 export default function Home() {
+  useEffect(() => {
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -26,9 +40,6 @@ export default function Home() {
                 <Link href="/portfolio">
                   <span>PORTFOLIO</span>
                 </Link>
-                {/* <Link href="/proto">
-                  <span>PROTOTYPING</span>
-                </Link> */}
               </nav>
               <div className="nav-bar"></div>
             </header>
@@ -44,8 +55,6 @@ export default function Home() {
               </div>
 
               <div className="mega-bottom-bar"></div>
-
-              {/* <div className="mega-subtitle">( ⏺ ⏺ ⏺ )</div> */}
             </div>
           </div>
         </div>
@@ -75,6 +84,17 @@ export default function Home() {
           display: flex;
           flex-direction: column;
         }
+
+        // .mega-subtitle {
+        //   font-family: "Times New Roman", serif;
+        //   // font-style: italic;
+        //   font-size: 1.3rem;
+        //   font-weight: 300;
+        //   opacity: 0.75;
+        //   text-align: left;
+        //   margin-top: 0.2rem;
+        //   color: #222;
+        // }
 
         .topnav {
           width: 100%;
@@ -137,17 +157,6 @@ export default function Home() {
           margin-bottom: 0.4rem;
         }
 
-        // .mega-subtitle {
-        //   font-family: "Times New Roman", serif;
-        //   // font-style: italic;
-        //   font-size: 1.3rem;
-        //   font-weight: 300;
-        //   opacity: 0.75;
-        //   text-align: left;
-        //   margin-top: 0.2rem;
-        //   color: #222;
-        // }
-
         .scene-wrapper {
           position: relative;
           width: 100%;
@@ -170,16 +179,24 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+          font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            Segoe UI,
+            Roboto,
+            Oxygen,
+            Ubuntu,
+            Cantarell,
+            Fira Sans,
+            Droid Sans,
+            Helvetica Neue,
             sans-serif;
         }
+
         * {
           box-sizing: border-box;
         }
-      `}</style>
 
-      <style jsx global>{`
         body {
           background: #f2efe9;
         }

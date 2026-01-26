@@ -1,12 +1,25 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import Clock from "../components/Clock";
 import DiceOverlay from "../components/DiceOverlay";
 
 export default function About() {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("gao820@purdue.edu");
@@ -186,7 +199,7 @@ export default function About() {
         }
 
         .left-clock :global(.clock) {
-          font-family: "Arial", serif;
+          font-family: Arial, serif;
           font-size: 10vw;
           font-weight: 300;
           line-height: 1;
@@ -247,6 +260,9 @@ export default function About() {
             width: 100%;
             padding: 1rem;
             box-sizing: border-box;
+
+            /* remove text guide lines */
+            background: none;
           }
 
           .content-box {

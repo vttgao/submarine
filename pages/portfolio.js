@@ -40,6 +40,12 @@ export default function Portfolio() {
   }, []);
 
   const images = [
+    // {
+    //   src: "/images/pdb_phys.png",
+    //   caption: "PART 25/26 PDB BOARD",
+    //   context:
+    //     "Custom power distribution board prototype used in the PART avionics pipeline, enabling isolated rail stages and subsystem protection.",
+    // },
     {
       src: "/images/pdb_board.png",
       caption: "PART 25/26 PDB (DEV BOARD)",

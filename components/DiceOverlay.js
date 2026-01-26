@@ -17,7 +17,7 @@ function makeShadowTexture() {
     size * 0.1,
     size / 2,
     size / 2,
-    size * 0.5
+    size * 0.5,
   );
 
   grad.addColorStop(0, "rgba(0, 0, 0, 0.28)");
