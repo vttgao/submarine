@@ -1,8 +1,7 @@
-// components/DiceOverlay.js
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 function makeShadowTexture() {
   const size = 256;
@@ -39,7 +38,7 @@ function Shadow({ targetRef }) {
 
     shadowRef.current.position.set(pos.x, pos.y, pos.z - 8);
     shadowRef.current.rotation.set(0, 0, 0);
-    shadowRef.current.scale.set(30, 30, 1);
+    shadowRef.current.scale.set(15, 15, 1);
   });
 
   return (
@@ -54,102 +53,191 @@ function Shadow({ targetRef }) {
   );
 }
 
-function DiceModel({ spinBoost, diceRef }) {
+function screenToWorld(px, py, camera) {
+  const ndc = new THREE.Vector3(
+    (px / window.innerWidth) * 2 - 1,
+    -(py / window.innerHeight) * 2 + 1,
+    0.5,
+  );
+  ndc.unproject(camera);
+  const dir = ndc.sub(camera.position).normalize();
+  const dist = -camera.position.z / dir.z;
+  return camera.position.clone().add(dir.multiplyScalar(dist));
+}
+
+function DiceModel({ diceRef, drag, cameraRef }) {
   const { scene } = useGLTF("/models/dice.glb");
+  const { camera } = useThree();
+  cameraRef.current = camera;
 
-  const idleVel = useRef({ x: 0, z: 0 });
-  const lastIdleTime = useRef(0);
+  const vel = useRef({ x: 0, y: 0 });
+  const rotVel = useRef({ x: 0.015, z: 0.01 });
+  const pos = useRef({ x: 0, y: 0 });
+  const initialized = useRef(false);
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+  useFrame(() => {
+    if (!diceRef.current) return;
 
-    const BASE_X = 0.015;
-    const BASE_Z = 0.01;
+    const halfW = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z * camera.aspect;
+    const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+    const BOUND_X = halfW - 12;
+    const BOUND_Y = halfH - 12;
 
-    let baseX = BASE_X;
-    let baseZ = BASE_Z;
-
-    /* boost on interaction */
-    if (spinBoost.current > 0) {
-      baseX *= spinBoost.current;
-      baseZ *= spinBoost.current;
-      spinBoost.current *= 0.92;
-
-      idleVel.current.x *= 0.7;
-      idleVel.current.z *= 0.7;
-    } else {
-      /* idle */
-      if (t - lastIdleTime.current > 0.5) {
-        lastIdleTime.current = t;
-        idleVel.current.x += (Math.random() - 0.5) * 0.0025;
-        idleVel.current.z += (Math.random() - 0.5) * 0.0025;
-      }
-
-      idleVel.current.x *= 0.97;
-      idleVel.current.z *= 0.97;
-
-      baseX += idleVel.current.x;
-      baseZ += idleVel.current.z;
+    if (!initialized.current) {
+      initialized.current = true;
+      pos.current.x = -BOUND_X * 0.4;
+      pos.current.y = 0;
     }
 
-    /* clamp base speed */
-    baseX = Math.max(baseX, BASE_X);
-    baseZ = Math.max(baseZ, BASE_Z);
+    if (drag.current.active) {
+      const wp = screenToWorld(drag.current.x, drag.current.y, camera);
+      pos.current.x = wp.x;
+      pos.current.y = wp.y;
 
-    /* rotation */
-    diceRef.current.rotation.x += baseX;
-    diceRef.current.rotation.z += baseZ;
+      rotVel.current.x = 0.08;
+      rotVel.current.z = 0.06;
+    } else {
+      pos.current.x += vel.current.x;
+      pos.current.y += vel.current.y;
 
-    /* path */
-    diceRef.current.position.x = Math.sin(t * 0.45) * 30;
-    diceRef.current.position.y = Math.cos(t * 0.35) * 23 - 10;
-    diceRef.current.position.z = 0;
+      vel.current.x *= 0.985;
+      vel.current.y *= 0.985;
+
+      if (pos.current.x > BOUND_X) {
+        pos.current.x = BOUND_X;
+        vel.current.x *= -0.7;
+      } else if (pos.current.x < -BOUND_X) {
+        pos.current.x = -BOUND_X;
+        vel.current.x *= -0.7;
+      }
+      if (pos.current.y > BOUND_Y) {
+        pos.current.y = BOUND_Y;
+        vel.current.y *= -0.7;
+      } else if (pos.current.y < -BOUND_Y) {
+        pos.current.y = -BOUND_Y;
+        vel.current.y *= -0.7;
+      }
+
+      const speed = Math.sqrt(vel.current.x ** 2 + vel.current.y ** 2);
+      rotVel.current.x = 0.015 + speed * 0.06;
+      rotVel.current.z = 0.01 + speed * 0.04;
+    }
+
+    if (drag.current.justReleased) {
+      drag.current.justReleased = false;
+      vel.current.x = drag.current.flingVx;
+      vel.current.y = drag.current.flingVy;
+    }
+
+    diceRef.current.position.set(pos.current.x, pos.current.y, 0);
+    diceRef.current.rotation.x += rotVel.current.x;
+    diceRef.current.rotation.z += rotVel.current.z;
   });
 
   return (
-    <primitive
-      ref={diceRef}
-      object={scene}
-      scale={2000}
-      onPointerDown={(e) => {
-        spinBoost.current = 12;
-        e.stopPropagation();
-      }}
-    />
+    <primitive ref={diceRef} object={scene} scale={700} />
   );
 }
 
 export default function DiceOverlay() {
-  const spinBoost = useRef(0);
   const diceRef = useRef(null);
+  const cameraRef = useRef(null);
+  const raycaster = useRef(new THREE.Raycaster());
+  const drag = useRef({
+    active: false,
+    x: 0,
+    y: 0,
+    history: [],
+    justReleased: false,
+    flingVx: 0,
+    flingVy: 0,
+  });
+
+  useEffect(() => {
+    const hitTest = (e) => {
+      if (!cameraRef.current || !diceRef.current) return false;
+      const ndc = new THREE.Vector2(
+        (e.clientX / window.innerWidth) * 2 - 1,
+        -(e.clientY / window.innerHeight) * 2 + 1,
+      );
+      raycaster.current.set(cameraRef.current.position, new THREE.Vector3(ndc.x, ndc.y, 0.5).unproject(cameraRef.current).sub(cameraRef.current.position).normalize());
+      const hits = raycaster.current.intersectObject(diceRef.current, true);
+      return hits.length > 0;
+    };
+
+    const onDown = (e) => {
+      if (!hitTest(e)) return;
+      e.preventDefault();
+      drag.current.active = true;
+      drag.current.x = e.clientX;
+      drag.current.y = e.clientY;
+      drag.current.history = [{ x: e.clientX, y: e.clientY, t: performance.now() }];
+    };
+
+    const onMove = (e) => {
+      if (!drag.current.active) return;
+      e.preventDefault();
+      drag.current.x = e.clientX;
+      drag.current.y = e.clientY;
+
+      const now = performance.now();
+      drag.current.history.push({ x: e.clientX, y: e.clientY, t: now });
+      drag.current.history = drag.current.history.filter((p) => now - p.t < 80);
+    };
+
+    const onUp = () => {
+      if (!drag.current.active) return;
+      drag.current.active = false;
+
+      const h = drag.current.history;
+      if (h.length >= 2) {
+        const first = h[0];
+        const last = h[h.length - 1];
+        const dt = Math.max(last.t - first.t, 1);
+        drag.current.flingVx = ((last.x - first.x) / dt) * 1.8;
+        drag.current.flingVy = -((last.y - first.y) / dt) * 1.8;
+      } else {
+        drag.current.flingVx = 0;
+        drag.current.flingVy = 0;
+      }
+      drag.current.justReleased = true;
+    };
+
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    return () => {
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+  }, []);
 
   return (
     <div className="dice-overlay">
-      <div className="dice-canvas-wrapper">
-        <Canvas
-          camera={{
-            position: [0, 0, 900],
-            fov: 18,
-            near: 0.1,
-            far: 5000,
-          }}
-          dpr={[1, 1]} // lock resolution
-          gl={{ antialias: true }}
-          resize={{ scroll: false, offsetSize: false }} // prevent auto-resize
-          style={{
-            width: "100%",
-            height: "100%",
-            pointerEvents: "auto",
-          }}
-        >
-          <ambientLight intensity={5} />
-          <hemisphereLight args={[0xffffff, 0x444444, 1.2]} />
-          <directionalLight position={[5, 5, 5]} intensity={3} />
+      <Canvas
+        camera={{
+          position: [0, 0, 900],
+          fov: 18,
+          near: 0.1,
+          far: 5000,
+        }}
+        dpr={[1, 1]}
+        gl={{ antialias: true }}
+        resize={{ scroll: false, offsetSize: false }}
+        style={{
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+        }}
+      >
+        <ambientLight intensity={5} />
+        <hemisphereLight args={[0xffffff, 0x444444, 1.2]} />
+        <directionalLight position={[5, 5, 5]} intensity={3} />
 
-          <Shadow targetRef={diceRef} />
-          <DiceModel spinBoost={spinBoost} diceRef={diceRef} />
-        </Canvas>
-      </div>
+        <Shadow targetRef={diceRef} />
+        <DiceModel diceRef={diceRef} drag={drag} cameraRef={cameraRef} />
+      </Canvas>
 
       <style jsx>{`
         .dice-overlay {
@@ -157,18 +245,6 @@ export default function DiceOverlay() {
           inset: 0;
           pointer-events: none;
           z-index: 99;
-        }
-
-        .dice-canvas-wrapper {
-          position: fixed;
-          width: 700px;
-          height: 350px;
-          top: 50%;
-          left: 20%;
-          transform: translate(-50%, -50%);
-          pointer-events: auto;
-          z-index: 100;
-          overflow: visible;
         }
       `}</style>
     </div>
