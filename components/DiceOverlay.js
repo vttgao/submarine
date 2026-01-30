@@ -78,8 +78,12 @@ function DiceModel({ diceRef, drag, cameraRef }) {
   useFrame(() => {
     if (!diceRef.current) return;
 
-    const halfW = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z * camera.aspect;
-    const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+    const halfW =
+      Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) *
+      camera.position.z *
+      camera.aspect;
+    const halfH =
+      Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
     const BOUND_X = halfW - 12;
     const BOUND_Y = halfH - 12;
 
@@ -134,9 +138,7 @@ function DiceModel({ diceRef, drag, cameraRef }) {
     diceRef.current.rotation.z += rotVel.current.z;
   });
 
-  return (
-    <primitive ref={diceRef} object={scene} scale={700} />
-  );
+  return <primitive ref={diceRef} object={scene} scale={1000} />;
 }
 
 export default function DiceOverlay() {
@@ -160,7 +162,13 @@ export default function DiceOverlay() {
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / window.innerHeight) * 2 + 1,
       );
-      raycaster.current.set(cameraRef.current.position, new THREE.Vector3(ndc.x, ndc.y, 0.5).unproject(cameraRef.current).sub(cameraRef.current.position).normalize());
+      raycaster.current.set(
+        cameraRef.current.position,
+        new THREE.Vector3(ndc.x, ndc.y, 0.5)
+          .unproject(cameraRef.current)
+          .sub(cameraRef.current.position)
+          .normalize(),
+      );
       const hits = raycaster.current.intersectObject(diceRef.current, true);
       return hits.length > 0;
     };
@@ -171,7 +179,9 @@ export default function DiceOverlay() {
       drag.current.active = true;
       drag.current.x = e.clientX;
       drag.current.y = e.clientY;
-      drag.current.history = [{ x: e.clientX, y: e.clientY, t: performance.now() }];
+      drag.current.history = [
+        { x: e.clientX, y: e.clientY, t: performance.now() },
+      ];
     };
 
     const onMove = (e) => {

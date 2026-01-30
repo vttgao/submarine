@@ -78,14 +78,11 @@ export default function About() {
                 I'M INTERESTED IN PCBS, SEMICONDUCTOR MANUFACTURING, CHIP
                 DESIGN, SOFTWARE ENGINEERING, AND EMBEDDED SYSTEMS ENGINEERING.
               </p>
-
               <p>
                 I LIKE TECHNICAL BUILDS THAT FEEL A BIT WHIMSICAL. THIS SITE IS
-                SOMEWHERE TO PUT PROJECTS, PHOTOS, 3D MODELS, AND OTHER DIGITAL
-                TCHOTCHKES. CHECK THE PORTFOLIO PAGE FOR MY WORK.
+                SOMEWHERE TO PUT PROJECTS, AND OTHER DIGITAL TCHOTCHKES.
               </p>
-
-              <p>TRY ROLLING THE DIE!</p>
+              <p>CHECK THE PORTFOLIO PAGE FOR MY WORK. ROLL THE DIE!</p>
 
               <p>
                 CONTACT ME AT{" "}
